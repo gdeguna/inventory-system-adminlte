@@ -37,13 +37,11 @@
                 <thead>
                 <tr>
                   <th>Jenis Barang</th>
-                  <th>Jumlah</th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr>
                   <td>Elektronik</td>
-                  <td>4</td>
                 </tr>
                 </tbody>
               </table>
