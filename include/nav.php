@@ -21,24 +21,24 @@
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header">MENUS</li>
         <!-- Optionally, you can add icons to the links -->
-        <li><a href="index.php"><i class="fa fa-link"></i> <span>Dashboard</span></a></li>
-        <li><a href="data_barang.php"><i class="fa fa-link"></i> <span>Data Barang</span></a></li>
+        <li><a href="index.php"><i class="fa fa-home"></i> <span>Dashboard</span></a></li>
+        <li><a href="data_barang.php"><i class="fa fa-dropbox"></i> <span>Data Barang</span></a></li>
         <!-- <li><a href="#"><i class="fa fa-link"></i> <span>Data Master</span></a></li> -->
         <li class="treeview">
-          <a href="#"><i class="fa fa-link"></i> <span>Data Master</span>
+          <a href="#"><i class="fa fa-inbox"></i> <span>Data Master</span>
             <span class="pull-right-container">
                 <i class="fa fa-angle-left pull-right"></i>
               </span>
           </a>
           <ul class="treeview-menu">
             <li><a href="m-jenisbarang.php">Master Jenis Barang</a></li>
-            <li><a href="#">Master Merk</a></li>
-            <li><a href="#">Master Vendor</a></li>
-            <li><a href="#">Master Lokasi</a></li>
+            <li><a href="m-merk.php">Master Merk</a></li>
+            <li><a href="m-vendor.php">Master Vendor</a></li>
+            <li><a href="m-lokasi.php">Master Lokasi</a></li>
           </ul>
         </li>
         <li class="treeview">
-          <a href="#"><i class="fa fa-link"></i> <span>Transaksi</span>
+          <a href="#"><i class="fa fa-shopping-cart"></i> <span>Transaksi</span>
             <span class="pull-right-container">
                 <i class="fa fa-angle-left pull-right"></i>
               </span>
@@ -49,7 +49,7 @@
           </ul>
         </li>
         <li class="treeview">
-          <a href="#"><i class="fa fa-link"></i> <span>Laporan</span>
+          <a href="#"><i class="fa fa-sticky-note"></i> <span>Laporan</span>
             <span class="pull-right-container">
                 <i class="fa fa-angle-left pull-right"></i>
               </span>
