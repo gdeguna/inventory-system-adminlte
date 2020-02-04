@@ -32,7 +32,31 @@
           </a>
           <ul class="treeview-menu">
             <li><a href="m-jenisbarang.php">Master Jenis Barang</a></li>
+            <li><a href="#">Master Merk</a></li>
             <li><a href="#">Master Vendor</a></li>
+            <li><a href="#">Master Lokasi</a></li>
+          </ul>
+        </li>
+        <li class="treeview">
+          <a href="#"><i class="fa fa-link"></i> <span>Transaksi</span>
+            <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+              </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="#">Peminjaman</a></li>
+            <li><a href="#">Pengembalian</a></li>
+          </ul>
+        </li>
+        <li class="treeview">
+          <a href="#"><i class="fa fa-link"></i> <span>Laporan</span>
+            <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+              </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="#">Laporan Semua Data</a></li>
+            <li><a href="#">Laporan Peminjaman</a></li>
           </ul>
         </li>
       </ul>
