@@ -48,18 +48,20 @@
                 <tr>
                   <!-- <th>No.</th> -->
                   <th>Nama Barang</th>
-                  <th>Jenis</th>
-                  <th>Lokasi</th>
-                  <th>Blabla</th>
-                  <th>Blabla</th>
-                  <th>Blabla</th>
-                  <th>Blabla</th>
+                  <th>Jenis Barang</th>
+                  <th>Merk</th>
+                  <th>Vendor</th>
+                  <th>Lokasi Barang</th>
+                  <th>Tanggal Pembelian</th>
+                  <th>Jumlah Barang</th>
+                  <th>Total Harga</th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr>
                   <!-- <td>1</td> -->
                   <td>Gelas</td>
+                  <td></td>
                   <td></td>
                   <td></td>
                   <td></td>
