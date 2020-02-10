@@ -29,7 +29,7 @@
         <div class="col-sm-2">
           <div class="btn-group">
             <p>
-            <a href="#" type="button" class="btn btn-block btn-success btn-flat"><i class="fa fa-edit"></i>TAMBAH DATA</a>
+            <a href="form-tambahbarang.php" type="button" class="btn btn-block btn-success btn-flat"><i class="fa fa-edit"></i>TAMBAH DATA</a>
             </p>
           </div>
         </div>

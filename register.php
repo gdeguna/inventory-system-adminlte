@@ -2,36 +2,33 @@
 
 require_once("./process/Users.php");
 
-if(isset($_POST['login'])){
+if(isset($_POST['register'])){
 
-	$user = new Users();
-	$payload = [
-			"username" => $_POST['email'],
-			"email" => $_POST['email']
-		];
+    $user = new Users();
+    $payload = [
+        'nama_karyawan' => $_POST['nama_karyawan'],
+        'no_tlp' => $_POST['no_tlp'],
+        'username' => $_POST['username'],
+        'password' => $_POST['password'],
+        'email' => $_POST['email']
+        
+    ];
 
-	$query = $user->login($payload);
-	$data = $query->fetch_assoc();
+    // eksekusi query untuk menyimpan ke database
+    $create = $user->create($payload);;
 
-	// jika user terdaftar
-    if($data){
-        // verifikasi password
-        if(password_verify($_POST['password'], $data["password"])){
-            // buat Session
-            session_start();
-            $_SESSION["user"] = $data;
-            // login sukses, alihkan ke halaman timeline
-            header("Location: index.php");
-        }
-
-    }
+    // jika query simpan berhasil, maka user sudah terdaftar
+    // maka alihkan ke halaman login
+    if($create == TRUE) 
+    header("location: landing.php");
 }
+
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Inventory Management | Login</title>
+	<title>Inventory Management | Register</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->	
@@ -64,14 +61,31 @@ if(isset($_POST['login'])){
 			<div class="wrap-login100">
 				<div class="login100-form-title" style="background-image: url(images/bg-01.jpg);">
 					<span class="login100-form-title-1">
-						Sign In
+						Sign Up
 					</span>
 				</div>
 
-				<form class="login100-form validate-form" action="" method="POST">
-					<div class="wrap-input100 validate-input m-b-26" data-validate="Email is required">
+				<form class="login100-form validate-form" method="POST">
+					<div class="wrap-input100 validate-input m-b-26" data-validate="Tolong isi nama dengan benar.">
+						<span class="label-input100">Nama</span>
+						<input class="input100" type="text" name="nama_karyawan" placeholder="Masukkan nama">
+						<span class="focus-input100"></span>
+					</div>
+					<div class="wrap-input100 validate-input m-b-26" data-validate="Tolong isi Username dengan benar">
+						<span class="label-input100">Username</span>
+						<input class="input100" type="text" name="username" placeholder="Masukkan username">
+						<span class="focus-input100"></span>
+					</div>
+
+					<div class="wrap-input100 validate-input m-b-26" data-validate="Isi email dengan benar">
 						<span class="label-input100">Email</span>
 						<input class="input100" type="text" name="email" placeholder="Enter username or email">
+						<span class="focus-input100"></span>
+					</div>
+
+					<div class="wrap-input100 validate-input m-b-26" data-validate="Isi nomor dengan benar">
+						<span class="label-input100">No Telepon</span>
+						<input class="input100" type="text" name="no_tlp" placeholder="Masukkan nomor anda">
 						<span class="focus-input100"></span>
 					</div>
 
@@ -81,29 +95,12 @@ if(isset($_POST['login'])){
 						<span class="focus-input100"></span>
 					</div>
 
-					<div class="flex-sb-m w-full p-b-30">
-						<div>
-							<a href="register.php" class="txt2">
-								Daftar Akun Baru!
-							</a>
-						</div>
-					</div>
-<!-- 					<div class="form-group">
-		                <label for="username">Username</label>
-		                <input class="form-control" type="text" name="email" placeholder="Username atau email" />
-		            </div>
-		            <div class="form-group">
-		                <label for="password">Password</label>
-		                <input class="form-control" type="password" name="password" placeholder="Password" />
-		            </div> -->
-
-
 <!-- 					<div class="container-login100-form-btn">
 						<a href="index.php" class="login100-form-btn">
 							Login
 						</a>
 					</div> -->
-					<input type="submit" class="login100-form-btn" name="login" value="Masuk" />
+					<input type="submit" class="login100-form-btn" name="register" value="Daftar" />
 				</form>
 			</div>
 		</div>
@@ -125,6 +122,11 @@ if(isset($_POST['login'])){
 	<script src="vendor/countdowntime/countdowntime.js"></script>
 <!--===============================================================================================-->
 	<script src="js/main.js"></script>
+	<style type="text/css">
+		input.input100 {
+  		height: 19px;
+}
+	</style>
 
 </body>
 </html>

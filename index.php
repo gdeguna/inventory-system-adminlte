@@ -1,4 +1,9 @@
 <?php
+require_once("./process/auth.php"); 
+// require "Barang.php";
+?>
+
+<?php
   include "include/head.php"
 ?>
 <body class="hold-transition skin-green sidebar-mini">
