@@ -1,3 +1,8 @@
+<?php
+require_once("./process/auth.php"); 
+// require "Barang.php";
+?>
+
 <?
 session_start();
 ?>

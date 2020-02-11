@@ -22,9 +22,13 @@ if(isset($_POST['login'])){
             $_SESSION["user"] = $data;
             // login sukses, alihkan ke halaman timeline
             header("Location: index.php");
+
+            exit;
         }
 
     }
+
+    $error = true;
 }
 ?>
 
