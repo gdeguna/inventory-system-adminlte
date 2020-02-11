@@ -1,6 +1,7 @@
 <?php
 require_once("./process/auth.php"); 
 // require "Barang.php";
+// var_dump($_SESSION['user']);
 ?>
 
 <?php

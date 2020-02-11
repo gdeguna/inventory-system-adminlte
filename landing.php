@@ -20,9 +20,9 @@ if(isset($_POST['login'])){
             // buat Session
             session_start();
             $_SESSION["user"] = $data;
+            $_SESSION["level"] = $data["levels"];
             // login sukses, alihkan ke halaman timeline
             header("Location: index.php");
-
             exit;
         }
 

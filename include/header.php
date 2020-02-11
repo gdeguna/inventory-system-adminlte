@@ -1,3 +1,6 @@
+  <?php 
+
+  ?>
   <header class="main-header">
 
     <!-- Logo -->
@@ -24,7 +27,7 @@
               <!-- The user image in the navbar-->
               <img src="dist/img/avatar2.png" class="user-image" alt="User Image">
               <!-- hidden-xs hides the username on small devices so only the image appears. -->
-              <span class="hidden-xs">gdeguna</span>
+              <span class="hidden-xs"><?php echo $_SESSION['user']['username']; ?></span>
             </a>
             <ul class="dropdown-menu">
               <!-- The user image in the menu -->
@@ -32,8 +35,8 @@
                 <img src="dist/img/avatar2.png" class="img-circle" alt="User Image">
 
                 <p>
-                  gdeguna
-                  <small>Member since Nov. 2018</small>
+                  <?php echo $_SESSION['user']['username']; ?>
+                  <small><?php echo $_SESSION["level"]; ?></small>
                 </p>
               </li>
               <!-- Menu Body -->

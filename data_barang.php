@@ -1,6 +1,11 @@
 <?php
   include 'include/head.php';
 ?>
+<?php
+  require"./process/Data-barang.php";
+  $barang = new Barang();
+  $rows = $barang->all(); 
+?>
 <body class="hold-transition skin-green sidebar-mini">
 <div class="wrapper">
 <?php
@@ -39,7 +44,7 @@
         <div class="col-lg-12" col-xs-12>
           <div class="box box-success">
             <div class="box-header">
-              <h3 class="box-title">Data Table With Full Features</h3>
+              <h3 class="box-title">Tabel Barang</h3>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
@@ -55,20 +60,32 @@
                   <th>Tanggal Pembelian</th>
                   <th>Jumlah Barang</th>
                   <th>Total Harga</th>
+                  <th>Action</th>
                 </tr>
                 </thead>
                 <tbody>
+                <?php
+                while($row = $rows->fetch_assoc()) {
+                ?>
                 <tr>
                   <!-- <td>1</td> -->
-                  <td>Gelas</td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
+                  <td><?php echo $row['nama_barang'] ?></td>
+                  <td><?php echo $row['jenis_barang'] ?></td>
+                  <td><?php echo $row['merek'] ?></td>
+                  <td><?php echo $row['vendor'] ?></td>
+                  <td><?php echo $row['lokasi'] ?></td>
+                  <td><?php echo $row['tanggal_pembelian'] ?></td>
+                  <td><?php echo $row['jumlah'] ?></td>
+                  <td>IDR <?php echo number_format($row['harga']) ?></td>
+                  <td>
+                    <a href="halamanedit.php?id=<?php echo $row['id_barang'] ?>" class="btn btn-success btn-flat">Edit</a>
+
+                    <a class="btn btn-danger btn-flat" onclick="return hapus(<?php echo $row['id_barang'] ?>)">Delete</a>
+                  </td>
                 </tr>
+                <?php
+                  }
+                ?>
                 </tbody>
               </table>
             </div>
@@ -108,5 +125,30 @@
       'autoWidth'   : false
     })
   })
+</script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+<script type="text/javascript">
+
+
+function hapus(id_barang){
+  Swal.fire({
+    title: 'Apakah Anda Yakin?',
+    text: "Data ini akan dihapus secara permanen.",
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Yes, delete it!'
+  }).then((result) => {
+    if (result.value) {
+      Swal.fire(
+        'Deleted!',
+        'Your file has been deleted.',
+        'success'
+      );
+      document.location = "hapus_data.php?id_barang="+ id_barang;
+    }
+  })
+}
 </script>
 </body>
