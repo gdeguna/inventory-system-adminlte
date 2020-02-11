@@ -28,11 +28,11 @@ class Barang extends Connection
 		// return $sql;
 	}
 
-	function find($id)
+	function find($id_barang)
 	{
-		$sql = "SELECT * FROM ". $this->table. " WHERE id = $id";
+		$sql = "SELECT * FROM ". $this->table. " WHERE id_barang = $id_barang";
 		$result = $this->conn->query($sql);
-		// return $result;
+		return $result;
 		// return $sql;
 	}
 
