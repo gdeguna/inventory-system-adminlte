@@ -10,7 +10,8 @@ if(isset($_POST['register'])){
         'no_tlp' => $_POST['no_tlp'],
         'username' => $_POST['username'],
         'password' => $_POST['password'],
-        'email' => $_POST['email']
+        'email' => $_POST['email'],
+        'avatar' => $_FILES['avatar']
         
     ];
 
@@ -94,6 +95,10 @@ if(isset($_POST['register'])){
 						<input class="input100" type="password" name="password" placeholder="Enter password">
 						<span class="focus-input100"></span>
 					</div>
+					<div class="input100 validate-input m-b-18">
+                       <!--  <span class="label-input100" for="user_pict">Avatar</span> -->
+                        <input class="" type="file" class="form-control-file" name="user_pict" id="user_pict">
+                    </div>
 
 <!-- 					<div class="container-login100-form-btn">
 						<a href="index.php" class="login100-form-btn">
@@ -125,6 +130,27 @@ if(isset($_POST['register'])){
 	<style type="text/css">
 		input.input100 {
   		height: 19px;
+}
+		.login100-form {
+		  width: 100%;
+		  height: 500px;
+		  display: -webkit-box;
+		  display: -webkit-flex;
+		  display: -moz-box;
+		  display: -ms-flexbox;
+		  display: flex;
+		  flex-wrap: wrap;
+		  justify-content: space-between;
+		  padding: 43px 88px 93px 190px;
+}
+
+		.wrap-login100 {
+		  width: 500px;
+		  height: 600px;
+		  background: #fff;
+		  border-radius: 10px;
+		  overflow: hidden;
+		  position: relative;
 }
 	</style>
 

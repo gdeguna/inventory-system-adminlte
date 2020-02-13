@@ -7,4 +7,4 @@ $barang = new Barang();
 $delete = $barang->delete($_GET['id_barang']);
 
 // if($create === TRUE)
-header("location: index.php");
+header("location: ../data_barang.php");

@@ -9,9 +9,7 @@
           <img src="dist/img/avatar2.png" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
-          <p><?php echo $_SESSION['user']['email']; ?></p>
-          <!-- Status -->
-          <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+          <h5><?php echo $_SESSION['user']['email']; ?></h5>
         </div>
       </div>
 

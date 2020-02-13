@@ -78,7 +78,7 @@
                   <td><?php echo $row['jumlah'] ?></td>
                   <td>IDR <?php echo number_format($row['harga']) ?></td>
                   <td>
-                    <a href="edit-barang.php?id=<?php echo $row['id_barang'] ?>" class="btn btn-success btn-flat">Edit</a>
+                    <a href="form-editbarang.php?id=<?php echo $row['id_barang'] ?>" class="btn btn-success btn-flat">Edit</a>
 
                     <a class="btn btn-danger btn-flat" onclick="return hapus(<?php echo $row['id_barang'] ?>)">Delete</a>
                   </td>
@@ -146,7 +146,7 @@ function hapus(id_barang){
         'Your file has been deleted.',
         'success'
       );
-      document.location = "./process/hapus_data.php?id_barang="+ id_barang;
+      document.location = "./process/hapus-data.php?id_barang="+ id_barang;
     }
   })
 }

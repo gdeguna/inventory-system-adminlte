@@ -1,10 +1,10 @@
 <?php
   include 'include/head.php';
   require "./process/Data-barang.php";
-  
+
   $barang = new Barang();
-  // $edit = $barang->join();
-  // $row = $edit->fetch_assoc();
+  $edit = $barang->join($_GET['id']);
+  $row = $edit->fetch_assoc();
 ?>
 <body class="hold-transition skin-green sidebar-mini">
 <div class="wrapper">
@@ -37,13 +37,13 @@
             <div class="box-header with-border">
               <h3 class="box-title">Tambah Barang</h3>
             </div>
-            <form class="form-horizontal" method="POST" action="./process/insert-barang.php">
+            <form class="form-horizontal" method="POST" action="./process/edit-barang.php">
               <div class="box-body">
                 <div class="form-group">
                   <label for="namabarang" class="col-sm-2 control-label">Nama Barang</label>
 
                   <div class="col-sm-10">
-                    <input type="text" class="form-control" name="nama_barang" id="nama_barang" required="required" placeholder="">
+                    <input type="text" class="form-control" name="nama_barang" id="nama_barang" required="required" placeholder="" value="<?php echo $row['nama_barang'] ?>">
                   </div>
                 </div>
                  <div class="form-group">
@@ -122,21 +122,21 @@
                   <label for="tanggalpembelian" class="col-sm-2 control-label">Tanggal Pembelian</label>
 
                   <div class="col-sm-10">
-                    <input type="date" name="tanggal_pembelian" class="form-control" id="tanggal_pembelian" placeholder="" required="required">
+                    <input type="date" name="tanggal_pembelian" class="form-control" id="tanggal_pembelian" placeholder="" required="required" value="<?php echo $row['tanggal_pembelian'] ?>">
                   </div>
                 </div>
               <div class="form-group">
                   <label for="jumlahbarang" class="col-sm-2 control-label">Jumlah Barang</label>
 
                   <div class="col-sm-10">
-                    <input type="text" name="jumlah" class="form-control" id="jumlah" placeholder="" required="required">
+                    <input type="text" name="jumlah" class="form-control" id="jumlah" placeholder="" required="required" value="<?php echo $row['jumlah'] ?>">
                   </div>
                 </div>
               <div class="form-group">
                   <label for="totalharga" class="col-sm-2 control-label">Harga Total</label>
 
                   <div class="col-sm-10">
-                    <input type="text" name="harga" class="form-control" id="harga" placeholder="" required="required">
+                    <input type="text" name="harga" class="form-control" id="harga" placeholder="" required="required" value="<?php echo $row['harga'] ?>">
                   </div>
               </div>
               <!-- /.box-body -->

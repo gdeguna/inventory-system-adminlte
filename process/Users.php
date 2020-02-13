@@ -41,7 +41,8 @@ class Users extends Connection
 			'".$payloads['no_tlp']."',
 			'".$payloads['email']."',
 			'".$payloads['username']."',
-			'".$password."'
+			'".$password."',
+			'".$payloads['avatar']."'
 		)";	
 
 		return $this->conn->query($sql);
