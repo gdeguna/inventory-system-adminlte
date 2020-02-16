@@ -30,8 +30,7 @@ class Barang extends Connection
 
 	function find($id_barang)
 	{
-		$sql = "SELECT * FROM ". $this->table. "
-				JOIN tb_jenis_barang ON  
+		$sql = "SELECT * FROM ". $this->table. "  
 				WHERE id_barang = $id_barang";
 		$result = $this->conn->query($sql);
 		return $result;
@@ -116,6 +115,16 @@ class Barang extends Connection
 		return $result;
 		// return $sql;
 	}
+
+	function jumlahbarang()
+	{
+		$sql = "SELECT
+			    COUNT(id_barang) total
+				FROM
+			    tb_barang;";
+		$result = $this->conn->query($sql);
+		return $result;
+	}
 }
 
 
@@ -128,3 +137,19 @@ class Barang extends Connection
 // 	$data = $barang->all($payload);
 
 // var_dump($data);
+
+// $barang = new Barang();
+// $payload = [
+// 	'nama_barang' => 'Komputer',
+// 	'id_jenis_barang'=> '1',
+// 	'id_merek'=> '1',
+// 	'id_vendor'=> '1',
+// 	'id_lokasi'=> '1',
+// 	'tanggal_pembelian'=> '',
+// 	'jumlah'=> '5',
+// 	'harga'=> '6'
+// ];
+
+// $create = $barang->update(7,$payload);
+
+// var_dump($create);

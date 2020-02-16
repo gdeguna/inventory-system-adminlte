@@ -67,13 +67,15 @@
                   <div class="col-sm-10">
                     <select name="id_vendor" class="form-control">
                       <?php
-                        $rows = $barang->vendor();
-                        while ($row = $rows->fetch_assoc()){
-                        ?>
-                        <option value="<?php echo $row['id_vendor'] ?>"><?php echo $row['vendor'] ?> </option>
-                        <?php
-                        } 
-                        ?>
+                        $vendor = $barang->vendor();
+
+                        while ($rowvendor = $vendor->fetch_assoc()) {
+                          $selected="";
+                          if($rowvendor['id_vendor']==$row['id_vendor'])
+                            $selected="selected";
+                          echo "<option value='".$rowvendor['id_vendor']."' ".$selected.">".$rowvendor['vendor']."</option>";
+                        }
+                      ?>
                     </select>
                   </div>
               </div>
@@ -83,13 +85,15 @@
                   <div class="col-sm-10">
                     <select name="id_merek" class="form-control">
                       <?php
-                        $rows = $barang->merk();
-                        while ($row = $rows->fetch_assoc()){
-                        ?>
-                        <option value="<?php echo $row['id_merek'] ?>"><?php echo $row['merek'] ?> </option>
-                        <?php
-                        } 
-                        ?>
+                        $merk = $barang->merk();
+
+                        while ($rowmerk = $merk->fetch_assoc()) {
+                          $selected="";
+                          if($rowmerk['id_merek']==$row['id_merek'])
+                            $selected="selected";
+                          echo "<option value='".$rowmerk['id_merek']."' ".$selected.">".$rowmerk['merek']."</option>";
+                        }
+                      ?>
                     </select>
                 </div>
                 </div>
@@ -97,14 +101,16 @@
                   <label for="lokasibarang" class="col-sm-2 control-label">Lokasi Barang</label>
 
                   <div class="col-sm-10">
-                      <select name="id_lokasi" class="form-control">
+                      <select name="id_vendor" class="form-control">
                         <?php
-                        $rows = $barang->lokasi();
-                        while ($row = $rows->fetch_assoc()){
-                        ?>
-                        <option value="<?php echo $row['id_lokasi'] ?>"><?php echo $row['lokasi'] ?> </option>
-                        <?php
-                        } 
+                          $lokasi = $barang->lokasi();
+
+                          while ($rowlokasi = $lokasi->fetch_assoc()) {
+                            $selected="";
+                            if($rowlokasi['id_lokasi']==$row['id_lokasi'])
+                              $selected="selected";
+                            echo "<option value='".$rowlokasi['id_lokasi']."' ".$selected.">".$rowlokasi['lokasi']."</option>";
+                          }
                         ?>
                       </select>
                   </div>

@@ -1,7 +1,12 @@
 <?php
 require_once("./process/auth.php"); 
-// require "Barang.php";
 // var_dump($_SESSION['user']);
+?>
+<?php
+require "./process/Data-barang.php";
+$barang = new Barang();
+$jumlahbarang =$barang->jumlahbarang();
+$rowjumlah = $jumlahbarang->fetch_assoc();
 ?>
 
 <?php
@@ -37,7 +42,7 @@ require_once("./process/auth.php");
           <!-- small box -->
           <div class="small-box bg-aqua">
             <div class="inner">
-              <h3>0</h3>
+              <h3><?php echo $rowjumlah['total']?></h3>
 
               <p>Jumlah Barang Seluruhnya</p>
             </div>

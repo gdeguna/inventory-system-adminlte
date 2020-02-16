@@ -5,6 +5,8 @@
   $barang = new Barang();
   $edit = $barang->join($_GET['id']);
   $row = $edit->fetch_assoc();
+  $tampil = $barang->find($_GET['id']);
+  $show = $tampil->fetch_assoc();
 ?>
 <body class="hold-transition skin-green sidebar-mini">
 <div class="wrapper">
@@ -37,7 +39,7 @@
             <div class="box-header with-border">
               <h3 class="box-title">Tambah Barang</h3>
             </div>
-            <form class="form-horizontal" method="POST" action="./process/edit-barang.php">
+            <form class="form-horizontal" method="POST" action="./process/edit-barang.php?id=<?php echo $show['id_barang'] ?>">
               <div class="box-body">
                 <div class="form-group">
                   <label for="namabarang" class="col-sm-2 control-label">Nama Barang</label>
@@ -50,16 +52,13 @@
                   <label for="jenisbarang" class="col-sm-2 control-label">Jenis Barang</label>
                   <div class="col-sm-10">
                   <select name="id_jenis_barang" class="form-control">
-                    
                     <?php
-                        $jenis = $barang->jenisbarang();
-
-                        while ($rowjenis = $jenis->fetch_assoc()) {
-                          $selected="";
-                          if($rowjenis['id_jenis_barang']==$row['id_jenis_barang'])
-                            $selected="selected";
-                          echo "<option value='".$rowjenis['id_jenis_barang']."' ".$selected.">".$rowjenis['jenis_barang']."</option>";
-                        }
+                      $rows = $barang->jenisbarang();
+                      while ($row = $rows->fetch_assoc()){
+                      ?>
+                      <option value="<?php echo $row['id_jenis_barang'] ?>"><?php echo $row['jenis_barang'] ?> </option>
+                      <?php
+                      } 
                       ?>
                     </select>
                   </div>
@@ -70,15 +69,13 @@
                   <div class="col-sm-10">
                     <select name="id_vendor" class="form-control">
                       <?php
-                        $vendor = $barang->vendor();
-
-                        while ($rowvendor = $vendor->fetch_assoc()) {
-                          $selected="";
-                          if($rowvendor['id_vendor']==$row['id_vendor'])
-                            $selected="selected";
-                          echo "<option value='".$rowvendor['id_vendor']."' ".$selected.">".$rowvendor['vendor']."</option>";
-                        }
-                      ?>
+                        $rows = $barang->vendor();
+                        while ($row = $rows->fetch_assoc()){
+                        ?>
+                        <option value="<?php echo $row['id_vendor'] ?>"><?php echo $row['vendor'] ?> </option>
+                        <?php
+                        } 
+                        ?>
                     </select>
                   </div>
               </div>
@@ -88,15 +85,13 @@
                   <div class="col-sm-10">
                     <select name="id_merek" class="form-control">
                       <?php
-                        $merk = $barang->merk();
-
-                        while ($rowmerk = $merk->fetch_assoc()) {
-                          $selected="";
-                          if($rowmerk['id_merek']==$row['id_merek'])
-                            $selected="selected";
-                          echo "<option value='".$rowmerk['id_merek']."' ".$selected.">".$rowmerk['merek']."</option>";
-                        }
-                      ?>
+                        $rows = $barang->merk();
+                        while ($row = $rows->fetch_assoc()){
+                        ?>
+                        <option value="<?php echo $row['id_merek'] ?>"><?php echo $row['merek'] ?> </option>
+                        <?php
+                        } 
+                        ?>
                     </select>
                 </div>
                 </div>
@@ -106,14 +101,12 @@
                   <div class="col-sm-10">
                       <select name="id_vendor" class="form-control">
                         <?php
-                          $lokasi = $barang->lokasi();
-
-                          while ($rowlokasi = $lokasi->fetch_assoc()) {
-                            $selected="";
-                            if($rowlokasi['id_lokasi']==$row['id_lokasi'])
-                              $selected="selected";
-                            echo "<option value='".$rowlokasi['id_lokasi']."' ".$selected.">".$rowlokasi['lokasi']."</option>";
-                          }
+                        $rows = $barang->lokasi();
+                        while ($row = $rows->fetch_assoc()){
+                        ?>
+                        <option value="<?php echo $row['id_lokasi'] ?>"><?php echo $row['lokasi'] ?> </option>
+                        <?php
+                        } 
                         ?>
                       </select>
                   </div>
@@ -122,21 +115,21 @@
                   <label for="tanggalpembelian" class="col-sm-2 control-label">Tanggal Pembelian</label>
 
                   <div class="col-sm-10">
-                    <input type="date" name="tanggal_pembelian" class="form-control" id="tanggal_pembelian" placeholder="" required="required" value="<?php echo $row['tanggal_pembelian'] ?>">
+                    <input type="date" name="tanggal_pembelian" class="form-control" id="tanggal_pembelian" placeholder="" required="required" value="<?php echo $show['tanggal_pembelian'] ?>">
                   </div>
                 </div>
               <div class="form-group">
                   <label for="jumlahbarang" class="col-sm-2 control-label">Jumlah Barang</label>
 
                   <div class="col-sm-10">
-                    <input type="text" name="jumlah" class="form-control" id="jumlah" placeholder="" required="required" value="<?php echo $row['jumlah'] ?>">
+                    <input type="text" name="jumlah" class="form-control" id="jumlah" placeholder="" required="required" value="<?php echo $show['jumlah'] ?>">
                   </div>
                 </div>
               <div class="form-group">
                   <label for="totalharga" class="col-sm-2 control-label">Harga Total</label>
 
                   <div class="col-sm-10">
-                    <input type="text" name="harga" class="form-control" id="harga" placeholder="" required="required" value="<?php echo $row['harga'] ?>">
+                    <input type="text" name="harga" class="form-control" id="harga" placeholder="" required="required" value="<?php echo $show['harga'] ?>">
                   </div>
               </div>
               <!-- /.box-body -->
