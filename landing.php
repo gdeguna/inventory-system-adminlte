@@ -19,10 +19,37 @@ if(isset($_POST['login'])){
         if(password_verify($_POST['password'], $data["password"])){
             // buat Session
             session_start();
-            $_SESSION["user"] = $data;
-            $_SESSION["level"] = $data["levels"];
-            // login sukses, alihkan ke halaman timeline
-            header("Location: index.php");
+            if($data['levels']=="Admin"){
+			// buat session login dan username
+            	$_SESSION["user"] = $data;
+				$_SESSION['username'] = $username;
+				$_SESSION['levels'] = "Admin";
+				// alihkan ke halaman dashboard admin
+				header("location:halaman_admin.php");
+ 
+			// cek jika user login sebagai pegawai
+			}else if($data['levels']=="Karyawan"){
+				// buat session login dan username
+				$_SESSION["user"] = $data;
+				$_SESSION['username'] = $username;
+				$_SESSION['levels'] = "Karyawan";
+				// alihkan ke halaman dashboard pegawai
+				header("location:halaman_pegawai.php");
+			 
+			// cek jika user login sebagai pengurus
+			}else if($data['levels']=="Super Admin"){
+				// buat session login dan username
+				$_SESSION["user"] = $data;
+				$_SESSION['username'] = $username;
+				$_SESSION['levels'] = "Super Admin";
+				// alihkan ke halaman dashboard pengurus
+				header("location:index.php");
+			 
+			}else{
+			 
+				// alihkan ke halaman login kembali
+				header("location:landing.php?pesan=gagal");
+			}
             exit;
         }
 

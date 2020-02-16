@@ -1,6 +1,6 @@
 <?php
 require_once("./process/auth.php"); 
-// var_dump($_SESSION['user']);
+var_dump($_SESSION['user']);
 ?>
 <?php
 require "./process/Data-barang.php";

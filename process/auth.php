@@ -1,6 +1,8 @@
 <?php
 
 session_start();
-if(!isset($_SESSION["user"])) header("Location: landing.php");
+if($_SESSION['levels']==""){
+		header("location:landing.php?pesan=gagal");
+	}
 
 ?>

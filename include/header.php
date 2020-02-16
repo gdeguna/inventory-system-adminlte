@@ -36,7 +36,7 @@
 
                 <p>
                   <?php echo $_SESSION['user']['username']; ?>
-                  <small><?php echo $_SESSION["level"]; ?></small>
+                  <small><?php echo $_SESSION["levels"]; ?></small>
                 </p>
               </li>
               <!-- Menu Footer-->
