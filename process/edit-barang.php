@@ -18,5 +18,5 @@ $create = $barang->update($_GET['id'], $payload);
 
 
 
-// if($create === TRUE)
+if($create === TRUE)
 header("location: ../data_barang.php");

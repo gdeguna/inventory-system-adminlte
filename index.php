@@ -1,6 +1,6 @@
 <?php
 require_once("./process/auth.php"); 
-var_dump($_SESSION['user']);
+// var_dump($_SESSION['user']);
 ?>
 <?php
 require "./process/Data-barang.php";
@@ -9,6 +9,16 @@ $jumlahbarang =$barang->jumlahbarang();
 $rowjumlah = $jumlahbarang->fetch_assoc();
 ?>
 
+<?php
+$conect=mysqli_connect("localhost","root","","db_inventory");
+$ambildata=mysqli_query($conect, "SELECT COUNT(id_karyawan) totalkar FROM tb_karyawan;");
+$rowkar=mysqli_fetch_array($ambildata);
+
+$ambilhari=mysqli_query($conect, "SELECT waktu_masuk,COUNT(*) AS jumlah_harian FROM tb_barang WHERE waktu_masuk=DATE(NOW()) GROUP BY waktu_masuk;");
+$rowhari=mysqli_fetch_array($ambilhari);
+?>
+
+<!-- ============================================== BATAS =================================================== -->
 <?php
   include "include/head.php"
 ?>
@@ -38,9 +48,26 @@ $rowjumlah = $jumlahbarang->fetch_assoc();
     <section class="content container-fluid">
       <br />
       <div class="row">
+         <div class="col-md-12 col-xs-12">
+          <!-- Widget: user widget style 1 -->
+          <div class="box box-widget widget-user-2">
+            <!-- Add the bg color to the header using any of the bg-* classes -->
+            <div class="widget-user-header bg-green disabled color-palette">
+              <div class="widget-user-image">
+                <img class="img-circle" src="dist/img/avatar2.png" alt="User Avatar">
+              </div>
+              <!-- /.widget-user-image -->
+              <h3 class="widget-user-username">Hello <b><?php echo $_SESSION['user']['nama_karyawan']; ?></b></h3>
+              <h5 class="widget-user-desc"><?php echo $_SESSION['user']['levels']; ?></h5>
+            </div>
+          </div>
+          <!-- /.widget-user -->
+        </div>
+      </div>
+      <div class="row" <?php echo $hiddendashboardicon; ?> >
         <div class="col-lg-3 col-xs-6">
           <!-- small box -->
-          <div class="small-box bg-aqua">
+          <div class="small-box bg-red">
             <div class="inner">
               <h3><?php echo $rowjumlah['total']?></h3>
 
@@ -49,17 +76,17 @@ $rowjumlah = $jumlahbarang->fetch_assoc();
             <div class="icon">
               <i class="fa fa-shopping-cart"></i>
             </div>
-            <a href="#" class="small-box-footer">
+            <a href="data_barang.php" class="small-box-footer">
               More info <i class="fa fa-arrow-circle-right"></i>
             </a>
           </div>
         </div>
         <!-- ./col -->
-        <div class="col-lg-3 col-xs-6">
+        <div class="col-lg-3 col-xs-6" <?php echo $hideall; ?> >
           <!-- small box -->
-          <div class="small-box bg-green">
+          <div class="small-box bg-red">
             <div class="inner">
-              <h3>53</h3>
+              <h3><?php echo $rowhari['jumlah_harian']?></h3>
 
               <p>Total Barang Masuk Hari Ini</p>
             </div>
@@ -72,11 +99,11 @@ $rowjumlah = $jumlahbarang->fetch_assoc();
           </div>
         </div>
         <!-- ./col -->
-        <div class="col-lg-3 col-xs-6">
+        <div class="col-lg-3 col-xs-6" <?php echo $hideall; ?> >
           <!-- small box -->
-          <div class="small-box bg-yellow">
+          <div class="small-box bg-red">
             <div class="inner">
-              <h3>44</h3>
+              <h3><?php echo $rowkar['totalkar']?></h3>
 
               <p>Total Pengguna</p>
             </div>
@@ -99,6 +126,23 @@ $rowjumlah = $jumlahbarang->fetch_assoc();
             </div>
             <div class="icon">
               <i class="ion ion-bookmark"></i>
+            </div>
+            <a href="#" class="small-box-footer">
+              More info <i class="fa fa-arrow-circle-right"></i>
+            </a>
+          </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-red">
+            <div class="inner">
+              <h3>53</h3>
+
+              <p>Total Barang Yang Dikembalikan</p>
+            </div>
+            <div class="icon">
+              <i class="ion ion-stats-bars"></i>
             </div>
             <a href="#" class="small-box-footer">
               More info <i class="fa fa-arrow-circle-right"></i>

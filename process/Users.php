@@ -76,6 +76,17 @@ class Users extends Connection
 
 		return $this->conn->query($sql);
 	}
+
+	function jumlahkar()
+	{
+		$sql = "SELECT
+			    COUNT(id_karyawan) totalkar
+				FROM
+			    tb_karyawan;";
+		$result = $this->conn->query($sql);
+		return $result;
+	}
+
 }
 
 

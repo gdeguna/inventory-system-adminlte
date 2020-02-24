@@ -6,6 +6,24 @@ require_once("./process/auth.php");
 <?
 session_start();
 ?>
+<?php 
+  // variabel untuk hide
+  $hiddendashboardicon = "";
+  $nav_hiddendatamaster = "";
+  $databarang_hidetmbltmbh = "";
+  $databarang_hidetmbledit = "";
+  $hideall = "";
+
+  // logika jika session berbeda apa yang harus dilakukan
+  if($_SESSION['levels'] == "Admin"){
+    $hiddendashboardicon = "";
+  }elseif ($_SESSION['levels'] == "Karyawan") {
+    $nav_hiddendatamaster = "style='display:none;'";
+    $databarang_hidetmbltmbh = "style='display:none;'";
+    $databarang_hidetmbledit = "style='display:none;'";
+    $hideall = "style='display:none;'";
+  }
+?>
 
 <head>
   <meta charset="utf-8">

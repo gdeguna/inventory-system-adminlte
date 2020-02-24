@@ -34,7 +34,7 @@
         <div class="col-sm-2">
           <div class="btn-group">
             <p>
-            <a href="form-tambahbarang.php" type="button" class="btn btn-block btn-success btn-flat"><i class="fa fa-edit"></i>TAMBAH DATA</a>
+            <a href="form-tambahbarang.php" type="button" class="btn btn-block btn-success btn-flat" <?php echo $databarang_hidetmbltmbh; ?> ><i class="fa fa-edit"></i>TAMBAH DATA</a>
             </p>
           </div>
         </div>
@@ -60,7 +60,7 @@
                   <th>Tanggal Pembelian</th>
                   <th>Jumlah Barang</th>
                   <th>Total Harga</th>
-                  <th>Action</th>
+                  <th <?php echo $databarang_hidetmbledit; ?> >Action</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -78,9 +78,9 @@
                   <td><?php echo $row['jumlah'] ?></td>
                   <td>IDR <?php echo number_format($row['harga']) ?></td>
                   <td>
-                    <a href="form-editbarang.php?id=<?php echo $row['id_barang'] ?>" class="btn btn-success btn-flat">Edit</a>
+                    <a href="form-editbarang.php?id=<?php echo $row['id_barang'] ?>" class="btn btn-success btn-flat" <?php echo $databarang_hidetmbledit; ?> >Edit</a>
 
-                    <a class="btn btn-danger btn-flat" onclick="return hapus(<?php echo $row['id_barang'] ?>)">Delete</a>
+                    <a class="btn btn-danger btn-flat" onclick="return hapus(<?php echo $row['id_barang'] ?>)" <?php echo $databarang_hidetmbledit; ?> >Delete</a>
                   </td>
                 </tr>
                 <?php

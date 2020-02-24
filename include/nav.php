@@ -1,5 +1,5 @@
 <aside class="main-sidebar">
-
+  <?php $activePage = basename($_SERVER['PHP_SELF'], ".php");?>
     <!-- sidebar: style can be found in sidebar.less -->
     <section class="sidebar">
 
@@ -19,20 +19,20 @@
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header">MENUS</li>
         <!-- Optionally, you can add icons to the links -->
-        <li><a href="index.php"><i class="fa fa-home"></i> <span>Dashboard</span></a></li>
-        <li><a href="data_barang.php"><i class="fa fa-dropbox"></i> <span>Data Barang</span></a></li>
+        <li class="<?= ($activePage == 'index') ? 'active':''; ?>"><a href="index.php"><i class="fa fa-home"></i> <span>Dashboard</span></a></li>
+        <li class="<?= ($activePage == 'data_barang') ? 'active':''; ?>"><a href="data_barang.php"><i class="fa fa-dropbox"></i> <span>Data Barang</span></a></li>
         <!-- <li><a href="#"><i class="fa fa-link"></i> <span>Data Master</span></a></li> -->
-        <li class="treeview">
-          <a href="#"><i class="fa fa-inbox"></i> <span>Data Master</span>
+        <li class="treeview <?= ($activePage == 'm-jenisbarang') ? 'active':''; ?> <?= ($activePage == 'm-merk') ? 'active':''; ?> <?= ($activePage == 'm-vendor') ? 'active':''; ?> <?= ($activePage == 'm-lokasi') ? 'active':''; ?>">
+          <a href="#" <?php echo $nav_hiddendatamaster ; ?> ><i class="fa fa-inbox"></i> <span>Data Master</span>
             <span class="pull-right-container">
                 <i class="fa fa-angle-left pull-right"></i>
               </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="m-jenisbarang.php">Master Jenis Barang</a></li>
-            <li><a href="m-merk.php">Master Merk</a></li>
-            <li><a href="m-vendor.php">Master Vendor</a></li>
-            <li><a href="m-lokasi.php">Master Lokasi</a></li>
+            <li class="<?= ($activePage == 'm-jenisbarang') ? 'active':''; ?>"><a href="m-jenisbarang.php">Master Jenis Barang</a></li>
+            <li class="<?= ($activePage == 'm-merk') ? 'active':''; ?>"><a href="m-merk.php">Master Merk</a></li>
+            <li class="<?= ($activePage == 'm-vendor') ? 'active':''; ?>"><a href="m-vendor.php">Master Vendor</a></li>
+            <li class="<?= ($activePage == 'm-lokasi') ? 'active':''; ?>"><a href="m-lokasi.php">Master Lokasi</a></li>
           </ul>
         </li>
         <li class="treeview">
@@ -47,7 +47,7 @@
           </ul>
         </li>
         <li class="treeview">
-          <a href="#"><i class="fa fa-sticky-note"></i> <span>Laporan</span>
+          <a href="#" <?php echo $hideall; ?>><i class="fa fa-sticky-note"></i> <span>Laporan</span>
             <span class="pull-right-container">
                 <i class="fa fa-angle-left pull-right"></i>
               </span>

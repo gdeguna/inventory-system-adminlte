@@ -99,7 +99,7 @@
                   <label for="lokasibarang" class="col-sm-2 control-label">Lokasi Barang</label>
 
                   <div class="col-sm-10">
-                      <select name="id_vendor" class="form-control">
+                      <select name="id_lokasi" class="form-control">
                         <?php
                         $rows = $barang->lokasi();
                         while ($row = $rows->fetch_assoc()){
@@ -139,7 +139,9 @@
               </div>
             </form>
           </div>
-
+        </form>
+      </div>
+      
       </div>
 
     </section>

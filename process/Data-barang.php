@@ -39,7 +39,7 @@ class Barang extends Connection
 
 	function create($payloads)
 	{
-		$sql = "INSERT INTO tb_barang (nama_barang, id_jenis_barang, id_merek, id_vendor, id_lokasi, tanggal_pembelian, jumlah, harga) VALUES (
+		$sql = "INSERT INTO tb_barang (nama_barang, id_jenis_barang, id_merek, id_vendor, id_lokasi, tanggal_pembelian, jumlah, harga, waktu_masuk) VALUES (
 			'".$payloads['nama_barang']."',
 			'".$payloads['id_jenis_barang']."',
 			'".$payloads['id_merek']."',
@@ -47,7 +47,8 @@ class Barang extends Connection
 			'".$payloads['id_lokasi']."',
 			'".$payloads['tanggal_pembelian']."',
 			'".$payloads['jumlah']."',
-			'".$payloads['harga']."'
+			'".$payloads['harga']."',
+			CURDATE()
 		)";	
 
 		return $this->conn->query($sql);
