@@ -13,15 +13,18 @@ session_start();
   $databarang_hidetmbltmbh = "";
   $databarang_hidetmbledit = "";
   $hideall = "";
+  $nav_hiddendatauser = "";
 
   // logika jika session berbeda apa yang harus dilakukan
   if($_SESSION['levels'] == "Admin"){
     $hiddendashboardicon = "";
+    $nav_hiddendatauser = "style='display:none;'";
   }elseif ($_SESSION['levels'] == "Karyawan") {
     $nav_hiddendatamaster = "style='display:none;'";
     $databarang_hidetmbltmbh = "style='display:none;'";
     $databarang_hidetmbledit = "style='display:none;'";
     $hideall = "style='display:none;'";
+    $nav_hiddendatauser = "style='display:none;'";
   }
 ?>
 

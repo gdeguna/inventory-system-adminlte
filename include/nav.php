@@ -57,6 +57,7 @@
             <li><a href="#">Laporan Peminjaman</a></li>
           </ul>
         </li>
+        <li <?php echo $nav_hiddendatauser ; ?> class="<?= ($activePage == 'data_user') ? 'active':''; ?>"><a href="data_user.php"><i class="fa fa-user" ></i> <span>Users</span></a></li>
       </ul>
       <!-- /.sidebar-menu -->
     </section>

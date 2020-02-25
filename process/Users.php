@@ -23,9 +23,9 @@ class Users extends Connection
 		// return $sql;
 	}
 
-	function find($id)
+	function find($id_karyawan)
 	{
-		$sql = "SELECT * FROM ". $this->table. " WHERE id = $id";
+		$sql = "SELECT * FROM ". $this->table. " WHERE id_karyawan = $id_karyawan";
 		$result = $this->conn->query($sql);
 		return $result;
 		// return $sql;
@@ -36,37 +36,34 @@ class Users extends Connection
 
 		$password = password_hash($payloads['password'], PASSWORD_DEFAULT);
 
-		$sql = "INSERT INTO ". $this->table. " (nama_karyawan, no_tlp, email, username, password) VALUES (
+		$sql = "INSERT INTO ". $this->table. " (nama_karyawan, no_tlp, email, username, password, levels) VALUES (
 			'".$payloads['nama_karyawan']."',
 			'".$payloads['no_tlp']."',
 			'".$payloads['email']."',
 			'".$payloads['username']."',
 			'".$password."',
-			'".$payloads['avatar']."'
+			'Karyawan'
+			
 		)";	
 
 		return $this->conn->query($sql);
 				// return $sql;
 	}
 
-	function update($id_barang, $payloads)
+	function update($id_karyawan, $payloads)
 	{
 		$sql = "UPDATE ". $this->table ." SET ".
-			"nama_barang = '". $payloads['nama_barang'] ."',
-			jenis_barang = '". $payloads['jenis_barang'] ."',
-			vendor = '". $payloads['vendor'] ."',
-			merek = '". $payloads['merek'] ."',
-			lokasi = '". $payloads['lokasi'] ."',
-			tanggal_pembelian = '". $payloads['tanggal_pembelian'] ."',
-			harga_beli = ". $payloads['harga_beli']
-		." WHERE id_barang = $id_barang";
+			"nama_karyawan = '". $payloads['nama_karyawan'] ."',
+			no_tlp = '". $payloads['no_tlp'] ."',
+			levels = '". $payloads['levels'] ."'
+			WHERE id_karyawan = $id_karyawan";
 
 		return $this->conn->query($sql);
 	}
 
-	function delete($id_barang)
+	function delete($id_karyawan)
 	{
-		$sql = "DELETE FROM ". $this->table ." WHERE id_barang = $id_barang";
+		$sql = "DELETE FROM ". $this->table ." WHERE id_karyawan = $id_karyawan";
 		return $this->conn->query($sql);
 	}
 

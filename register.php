@@ -11,7 +11,7 @@ if(isset($_POST['register'])){
         'username' => $_POST['username'],
         'password' => $_POST['password'],
         'email' => $_POST['email'],
-        'avatar' => $_FILES['avatar']
+        // 'avatar' => $_FILES['avatar']
         
     ];
 
@@ -95,10 +95,10 @@ if(isset($_POST['register'])){
 						<input class="input100" type="password" name="password" placeholder="Enter password">
 						<span class="focus-input100"></span>
 					</div>
-					<div class="input100 validate-input m-b-18">
+					<!-- <div class="input100 validate-input m-b-18"> -->
                        <!--  <span class="label-input100" for="user_pict">Avatar</span> -->
-                        <input class="" type="file" class="form-control-file" name="user_pict" id="user_pict">
-                    </div>
+                        <!-- <input class="" type="file" class="form-control-file" name="user_pict" id="user_pict"> -->
+                    <!-- </div> -->
 
 <!-- 					<div class="container-login100-form-btn">
 						<a href="index.php" class="login100-form-btn">
