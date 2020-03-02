@@ -4,7 +4,8 @@
 <?php
   require"./process/Data-barang.php";
   $barang = new Barang();
-  $rows = $barang->all(); 
+  $rows = $barang->belumsetuju();
+  $rowsku = $barang->perlukepastian(); 
 ?>
 <body class="hold-transition skin-green sidebar-mini">
 <div class="wrapper">
@@ -19,8 +20,8 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Daftar Semua Barang
-        <small>List semua barang yang telah masuk ke system.</small>
+        Daftar Semua Barang Yang Diajukan
+        <small>List semua barang yang telah diajukan.</small>
       </h1>
 <!--       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
@@ -34,7 +35,7 @@
         <div class="col-sm-2">
           <div class="btn-group">
             <p>
-            <a href="form-tambahbarang.php" type="button" class="btn btn-block btn-success btn-flat" <?php echo $databarang_hidetmbltmbh; ?>  ><i class="fa fa-edit"></i>AJUKAN PENGADAAN BARANG</a>
+            <a href="form-tambahbarang.php" type="button" class="btn btn-block btn-success btn-flat"><i class="fa fa-edit"></i>AJUKAN BARANG</a>
             </p>
           </div>
         </div>
@@ -44,7 +45,7 @@
         <div class="col-lg-12" col-xs-12>
           <div class="box box-success">
             <div class="box-header">
-              <h3 class="box-title">Tabel Barang</h3>
+              <h3 class="box-title">Tabel Semua Barang Yang diajukan</h3>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
@@ -57,10 +58,10 @@
                   <th>Merk</th>
                   <th>Vendor</th>
                   <th>Lokasi Barang</th>
-                  <th>Tanggal Pembelian</th>
+                  <th>Tanggal Pengajuan</th>
                   <th>Jumlah Barang</th>
                   <th>Total Harga</th>
-                  <th <?php echo $databarang_hidetmbledit; ?> >Action</th>
+                  <th>Status Pengajuan</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -78,9 +79,7 @@
                   <td><?php echo $row['jumlah'] ?></td>
                   <td>IDR <?php echo number_format($row['harga']) ?></td>
                   <td>
-                    <a href="form-editbarang.php?id=<?php echo $row['id_barang'] ?>" class="btn btn-success btn-flat" <?php echo $databarang_hidetmbledit; ?> >Edit</a>
-
-                    <a class="btn btn-danger btn-flat" onclick="return hapus(<?php echo $row['id_barang'] ?>)" <?php echo $databarang_hidetmbledit; ?> >Delete</a>
+                    <?php echo $row['status_pengajuan'] ?>
                   </td>
                 </tr>
                 <?php
@@ -89,6 +88,8 @@
                 </tbody>
               </table>
             </div>
+
+
             <!-- /.box-body -->
           </div>
           <!-- /.box -->
@@ -96,6 +97,69 @@
         <!-- /.col -->
       </div>
 
+      <div class="row" <?php echo $hideall; ?> >
+        <div class="col-lg-12" col-xs-12>
+          <div class="box box-success">
+            <div class="box-header">
+              <h3 class="box-title">Tabel Setuju</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+              <table id="example2" class="table table-bordered table-striped">
+                <thead>
+                <tr>
+                  <!-- <th>No.</th> -->
+                  <th>Nama Barang</th>
+                  <th>Jenis Barang</th>
+                  <th>Merk</th>
+                  <th>Vendor</th>
+                  <th>Lokasi Barang</th>
+                  <th>Tanggal Pembelian</th>
+                  <th>Jumlah Barang</th>
+                  <th>Total Harga</th>
+                  <th <?php echo $databarang_hidetmbledit; ?> >Status Pengajuan</th>
+                  <th>Action</th>
+
+                </tr>
+                </thead>
+                <tbody>
+                <?php
+                while($row1 = $rowsku->fetch_assoc()) {
+                ?>
+                <tr>
+                  <!-- <td>1</td> -->
+                  <td><?php echo $row1['nama_barang'] ?></td>
+                  <td><?php echo $row1['jenis_barang'] ?></td>
+                  <td><?php echo $row1['merek'] ?></td>
+                  <td><?php echo $row1['vendor'] ?></td>
+                  <td><?php echo $row1['lokasi'] ?></td>
+                  <td><?php echo $row1['tanggal_pembelian'] ?></td>
+                  <td><?php echo $row1['jumlah'] ?></td>
+                  <td>IDR <?php echo number_format($row1['harga']) ?></td>
+                  <td>
+                    <?php echo $row1['status_pengajuan'] ?>
+                  </td>
+                  <td>
+          
+                    <a class="btn btn-success btn-flat" onclick="return setuju(<?php echo $row1['id_barang'] ?>)" <?php echo $databarang_hidetmbledit; ?> >Setuju</a>
+
+                    <a class="btn btn-danger btn-flat" onclick="return tolak(<?php echo $row1['id_barang'] ?>)" <?php echo $databarang_hidetmbledit; ?> >Tolak</a>
+                  </td>
+                </tr>
+                <?php
+                  }
+                ?>
+                </tbody>
+              </table>
+            </div>
+
+
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+        </div>
+        <!-- /.col -->
+      </div>
     </section>
     <!-- /.content -->
   </div>
@@ -130,25 +194,52 @@
 <script type="text/javascript">
 
 
-function hapus(id_barang){
+function setuju(id_barang){
   Swal.fire({
     title: 'Apakah Anda Yakin?',
-    text: "Data ini akan dihapus secara permanen.",
+    text: "Item ini akan dioke dari pengajuan.",
     icon: 'warning',
     showCancelButton: true,
     confirmButtonColor: '#3085d6',
     cancelButtonColor: '#d33',
-    confirmButtonText: 'Yes, delete it!'
+    confirmButtonText: 'Tentu Saja!'
   }).then((result) => {
     if (result.value) {
       Swal.fire(
-        'Deleted!',
-        'Your file has been deleted.',
+        'Diterima!',
+        'Barang Telah diterima dari pengajuan',
         'success'
       );
-      document.location = "./process/hapus-data.php?id_barang="+ id_barang;
+      document.location = "./process/setuju-pengajuan.php?id_barang="+ id_barang;
     }
   })
 }
+
+function tolak(id_barang){
+  Swal.fire({
+    title: 'Apakah Anda Yakin?',
+    text: "Item ini akan ditolak dari pengajuan.",
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Tentu saja!'
+  }).then((result) => {
+    if (result.value) {
+      Swal.fire(
+        'Ditolak!',
+        'Barang Telah ditolak dari pengajuan.',
+        'success'
+      );
+      document.location = "./process/tolak-pengajuan.php?id_barang="+ id_barang;
+    }
+  })
+}
+
+</script>
+<script type="text/javascript">
+
+
+
 </script>
 </body>

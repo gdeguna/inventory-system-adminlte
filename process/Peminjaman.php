@@ -5,10 +5,10 @@ require "Connection.php";
 /**
  * 
  */
-class Barang extends Connection
+class Peminjaman extends Connection
 {
 	public $conn;
-	protected $table = 'tb_barang';
+	protected $table = 'tb_peminjaman';
 	
 	function __construct()
 	{
@@ -17,12 +17,12 @@ class Barang extends Connection
 
 	function all($field = '*')
 	{
-		$sql = "SELECT id_barang, nama_barang, jenis_barang, merek, vendor, lokasi, tanggal_pembelian, jumlah, harga ,tb_barang.id_merek, tb_vendor.id_vendor, tb_lokasi.id_lokasi, tb_jenis_barang.id_jenis_barang 
-			FROM tb_barang
-			LEFT JOIN tb_jenis_barang ON tb_barang.`id_jenis_barang`=tb_jenis_barang.`id_jenis_barang`
-			LEFT JOIN tb_vendor ON tb_barang.`id_vendor`=tb_vendor.`id_vendor`
-			LEFT JOIN tb_merek ON tb_barang.`id_merek`=tb_merek.`id_merek`
-			LEFT JOIN tb_lokasi ON tb_barang.`id_lokasi`=tb_lokasi.`id_lokasi` WHERE status_pengajuan = 'Approved'";
+		$sql = "SELECT tb_peminjaman.`id_peminjaman`, name_cstr, nama_barang, tb_detail_peminjaman.`jumlah`, nama_karyawan, tgl_peminjaman, tgl_pengembalian, sts
+			FROM tb_detail_peminjaman 
+			LEFT JOIN tb_peminjaman ON tb_detail_peminjaman.`id_peminjaman` = tb_peminjaman.`id_peminjaman` 
+			LEFT JOIN tb_barang ON tb_barang.`id_barang` = tb_detail_peminjaman.`id_barang` 
+			LEFT JOIN tb_customers ON tb_customers.`id_customers` = tb_peminjaman.`id_customers` 
+			LEFT JOIN tb_karyawan ON tb_karyawan.`id_karyawan` = tb_peminjaman.`id_karyawan`;";
 		$result = $this->conn->query($sql);
 		return $result;
 		// return $sql;
@@ -39,7 +39,7 @@ class Barang extends Connection
 
 	function create($payloads)
 	{
-		$sql = "INSERT INTO tb_barang (nama_barang, id_jenis_barang, id_merek, id_vendor, id_lokasi, tanggal_pembelian, jumlah, harga, waktu_masuk, status_pengajuan) VALUES (
+		$sql = "INSERT INTO tb_barang (nama_barang, id_jenis_barang, id_merek, id_vendor, id_lokasi, tanggal_pembelian, jumlah, harga, waktu_masuk) VALUES (
 			'".$payloads['nama_barang']."',
 			'".$payloads['id_jenis_barang']."',
 			'".$payloads['id_merek']."',
@@ -48,8 +48,7 @@ class Barang extends Connection
 			'".$payloads['tanggal_pembelian']."',
 			'".$payloads['jumlah']."',
 			'".$payloads['harga']."',
-			CURDATE(),
-			'Waiting'
+			CURDATE()
 		)";	
 
 		return $this->conn->query($sql);
@@ -120,66 +119,12 @@ class Barang extends Connection
 
 	function jumlahbarang()
 	{
-		$sql = "SELECT COUNT(status_pengajuan) totaloke
-		FROM tb_barang WHERE status_pengajuan = 'Approved';";
+		$sql = "SELECT
+			    COUNT(id_barang) total
+				FROM
+			    tb_barang;";
 		$result = $this->conn->query($sql);
 		return $result;
-	}
-
-	function belumsetuju($field = '*')
-	{
-		$sql = "SELECT id_barang, nama_barang, jenis_barang, merek, vendor, lokasi, tanggal_pembelian, jumlah, harga, status_pengajuan ,tb_barang.id_merek, tb_vendor.id_vendor, tb_lokasi.id_lokasi, tb_jenis_barang.id_jenis_barang 
-			FROM tb_barang
-			LEFT JOIN tb_jenis_barang ON tb_barang.`id_jenis_barang`=tb_jenis_barang.`id_jenis_barang`
-			LEFT JOIN tb_vendor ON tb_barang.`id_vendor`=tb_vendor.`id_vendor`
-			LEFT JOIN tb_merek ON tb_barang.`id_merek`=tb_merek.`id_merek`
-			LEFT JOIN tb_lokasi ON tb_barang.`id_lokasi`=tb_lokasi.`id_lokasi`;";
-		$result = $this->conn->query($sql);
-		return $result;
-		// return $sql;
-	}
-
-	function updatesetuju($id_barang, $payloads)
-	{
-		$sql = "UPDATE tb_barang SET ".
-			"nama_barang = '". $payloads['nama_barang'] ."',
-			id_jenis_barang = '". $payloads['id_jenis_barang'] ."',
-			id_merek = '". $payloads['id_merek'] ."',
-			id_vendor = '". $payloads['id_vendor'] ."',
-			id_lokasi = '". $payloads['id_lokasi'] ."',
-			tanggal_pembelian = '". $payloads['tanggal_pembelian'] ."',
-			jumlah ='". $payloads['jumlah'] ."',
-			harga = ". $payloads['harga']
-		." WHERE id_barang = $id_barang";
-
-		return $this->conn->query($sql);
-	}
-
-	function approve($id_barang)
-	{
-		$sql = "UPDATE tb_barang SET status_pengajuan = 'Approved' 
-			WHERE id_barang = $id_barang;";
-		return $this->conn->query($sql);
-	}
-
-	function tolak($id_barang)
-	{
-		$sql = "UPDATE tb_barang SET status_pengajuan = 'Not Approved' 
-			WHERE id_barang = $id_barang;";
-		return $this->conn->query($sql);
-	}
-
-	function perlukepastian($field = '*')
-	{
-		$sql = "SELECT id_barang, nama_barang, jenis_barang, merek, vendor, lokasi, tanggal_pembelian, jumlah, harga, status_pengajuan ,tb_barang.id_merek, tb_vendor.id_vendor, tb_lokasi.id_lokasi, tb_jenis_barang.id_jenis_barang 
-			FROM tb_barang
-			LEFT JOIN tb_jenis_barang ON tb_barang.`id_jenis_barang`=tb_jenis_barang.`id_jenis_barang`
-			LEFT JOIN tb_vendor ON tb_barang.`id_vendor`=tb_vendor.`id_vendor`
-			LEFT JOIN tb_merek ON tb_barang.`id_merek`=tb_merek.`id_merek`
-			LEFT JOIN tb_lokasi ON tb_barang.`id_lokasi`=tb_lokasi.`id_lokasi` WHERE status_pengajuan = 'Waiting';";
-		$result = $this->conn->query($sql);
-		return $result;
-		// return $sql;
 	}
 }
 

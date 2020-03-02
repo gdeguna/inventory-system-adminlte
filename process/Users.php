@@ -84,6 +84,12 @@ class Users extends Connection
 		return $result;
 	}
 
+	function logLogin($payloads)
+	{
+		$sql = "INSERT INTO log (id_karyawan, notes) VALUES ('".$payloads['username']."', 'Melakukan Login')";
+		$result = $this->conn->query($sql);
+
+	}
 }
 
 

@@ -19,4 +19,5 @@ $create = $barang->create($payload);
 
 
 // if($create === TRUE)
-header("location: ../data_barang.php");
+// header("location: ../data_barang.php");
+header("location: ../pengadaan-barang.php");

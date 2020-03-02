@@ -1,6 +1,6 @@
 <?php
 require_once("./process/auth.php"); 
-// var_dump($_SESSION['user']);
+// var_dump($_SESSION);
 ?>
 <?php
 require "./process/Data-barang.php";
@@ -14,8 +14,16 @@ $conect=mysqli_connect("localhost","root","","db_inventory");
 $ambildata=mysqli_query($conect, "SELECT COUNT(id_karyawan) totalkar FROM tb_karyawan;");
 $rowkar=mysqli_fetch_array($ambildata);
 
-$ambilhari=mysqli_query($conect, "SELECT waktu_masuk,COUNT(*) AS jumlah_harian FROM tb_barang WHERE waktu_masuk=DATE(NOW()) GROUP BY waktu_masuk;");
+$ambilhari=mysqli_query($conect, "SELECT waktu_masuk,COUNT(*) AS jumlah_harian FROM tb_barang WHERE waktu_masuk=DATE(NOW()) AND status_pengajuan = 'Approved' GROUP BY waktu_masuk;");
 $rowhari=mysqli_fetch_array($ambilhari);
+
+// if ($rowhari['jumlah_harian'] == NULL) {
+//   echo "0";
+// }else {
+//   echo $rowhari['jumlah_harian'];
+// }
+
+$rowhriku = isset($rowhari['jumlah_harian'])
 ?>
 
 <!-- ============================================== BATAS =================================================== -->
@@ -69,7 +77,7 @@ $rowhari=mysqli_fetch_array($ambilhari);
           <!-- small box -->
           <div class="small-box bg-red">
             <div class="inner">
-              <h3><?php echo $rowjumlah['total']?></h3>
+              <h3><?php echo $rowjumlah['totaloke']?></h3>
 
               <p>Jumlah Barang Seluruhnya</p>
             </div>
@@ -86,7 +94,11 @@ $rowhari=mysqli_fetch_array($ambilhari);
           <!-- small box -->
           <div class="small-box bg-red">
             <div class="inner">
-              <h3><?php echo $rowhari['jumlah_harian']?></h3>
+              <h3><?php if ($rowhriku == 0) {
+                    echo "0";
+                  }else {
+                    echo $rowhari['jumlah_harian'];
+                  } ?></h3>
 
               <p>Total Barang Masuk Hari Ini</p>
             </div>

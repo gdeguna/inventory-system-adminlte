@@ -35,15 +35,16 @@
             <li class="<?= ($activePage == 'm-lokasi') ? 'active':''; ?>"><a href="m-lokasi.php">Master Lokasi</a></li>
           </ul>
         </li>
-        <li class="treeview">
+        <li class="treeview <?= ($activePage == 'data_peminjaman') ? 'active':''; ?> <?= ($activePage == 'data_pengembalian') ? 'active':''; ?>">
           <a href="#"><i class="fa fa-shopping-cart"></i> <span>Transaksi</span>
             <span class="pull-right-container">
                 <i class="fa fa-angle-left pull-right"></i>
               </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="#">Peminjaman</a></li>
-            <li><a href="#">Pengembalian</a></li>
+            <li class="<?= ($activePage == 'pengadaan-barang') ? 'active':''; ?>" ><a href="pengadaan-barang.php">Pengadaan</a></li>
+            <li class="<?= ($activePage == 'data_peminjaman') ? 'active':''; ?>" ><a href="data_peminjaman.php">Peminjaman</a></li>
+            <li class="<?= ($activePage == 'data_pengembalian') ? 'active':''; ?>" ><a href="#">Pengembalian</a></li>
           </ul>
         </li>
         <li class="treeview">

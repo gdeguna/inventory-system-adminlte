@@ -19,7 +19,7 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Master Merk Barang
+        Form Pengajuan Barang
         <!-- <small>List semua barang yang telah masuk ke system.</small> -->
       </h1>
 <!--       <ol class="breadcrumb">
@@ -35,7 +35,7 @@
           <!-- Horizontal Form -->
           <div class="box">
             <div class="box-header with-border">
-              <h3 class="box-title">Tambah Barang</h3>
+              <h3 class="box-title">Ajukan Barang</h3>
             </div>
             <form class="form-horizontal" method="POST" action="./process/insert-barang.php">
               <div class="box-body">
@@ -110,7 +110,7 @@
                   </div>
                 </div>
               <div class="form-group">
-                  <label for="tanggalpembelian" class="col-sm-2 control-label">Tanggal Pembelian</label>
+                  <label for="tanggalpembelian" class="col-sm-2 control-label">Tanggal Pengajuan</label>
 
                   <div class="col-sm-10">
                     <input type="date" name="tanggal_pembelian" class="form-control" id="tanggal_pembelian" placeholder="" required="required">

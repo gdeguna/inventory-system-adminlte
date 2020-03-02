@@ -54,9 +54,13 @@
                   <select name="id_jenis_barang" class="form-control">
                     <?php
                       $rows = $barang->jenisbarang();
-                      while ($row = $rows->fetch_assoc()){
+                      while ($rowjenis = $rows->fetch_assoc()){
+                        $selected = "";
+                        if ($rowjenis['id_jenis_barang'] == $row['id_jenis_barang']) {
+                          $selected = "selected";
+                        }
                       ?>
-                      <option value="<?php echo $row['id_jenis_barang'] ?>"><?php echo $row['jenis_barang'] ?> </option>
+                      <option value="<?php echo $rowjenis['id_jenis_barang'] ?>" <?php echo $selected; ?> ><?php echo $rowjenis['jenis_barang'] ?> </option>
                       <?php
                       } 
                       ?>

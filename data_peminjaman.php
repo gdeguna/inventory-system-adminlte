@@ -2,9 +2,9 @@
   include 'include/head.php';
 ?>
 <?php
-  require"./process/Data-barang.php";
-  $barang = new Barang();
-  $rows = $barang->all(); 
+  require"./process/Peminjaman.php";
+  $pinjam = new Peminjaman();
+  $rows = $pinjam->all();
 ?>
 <body class="hold-transition skin-green sidebar-mini">
 <div class="wrapper">
@@ -34,7 +34,7 @@
         <div class="col-sm-2">
           <div class="btn-group">
             <p>
-            <a href="form-tambahbarang.php" type="button" class="btn btn-block btn-success btn-flat" <?php echo $databarang_hidetmbltmbh; ?>  ><i class="fa fa-edit"></i>AJUKAN PENGADAAN BARANG</a>
+            <a href="form-tambahbarang.php" type="button" class="btn btn-block btn-success btn-flat" <?php echo $databarang_hidetmbltmbh; ?> ><i class="fa fa-edit"></i>PEMINJAMAN BARU</a>
             </p>
           </div>
         </div>
@@ -52,14 +52,13 @@
                 <thead>
                 <tr>
                   <!-- <th>No.</th> -->
+                  <th>Nama Customer</th>
                   <th>Nama Barang</th>
-                  <th>Jenis Barang</th>
-                  <th>Merk</th>
-                  <th>Vendor</th>
-                  <th>Lokasi Barang</th>
-                  <th>Tanggal Pembelian</th>
-                  <th>Jumlah Barang</th>
-                  <th>Total Harga</th>
+                  <th>Jumlah</th>
+                  <th>Handle By</th>
+                  <th>Tanggal Peminjaman</th>
+                  <th>Tanggal Pengembalian</th>
+                  <th>Status</th>
                   <th <?php echo $databarang_hidetmbledit; ?> >Action</th>
                 </tr>
                 </thead>
@@ -69,18 +68,17 @@
                 ?>
                 <tr>
                   <!-- <td>1</td> -->
+                  <td><?php echo $row['name_cstr'] ?></td>
                   <td><?php echo $row['nama_barang'] ?></td>
-                  <td><?php echo $row['jenis_barang'] ?></td>
-                  <td><?php echo $row['merek'] ?></td>
-                  <td><?php echo $row['vendor'] ?></td>
-                  <td><?php echo $row['lokasi'] ?></td>
-                  <td><?php echo $row['tanggal_pembelian'] ?></td>
                   <td><?php echo $row['jumlah'] ?></td>
-                  <td>IDR <?php echo number_format($row['harga']) ?></td>
+                  <td><?php echo $row['nama_karyawan'] ?></td>
+                  <td><?php echo $row['tgl_peminjaman'] ?></td>
+                  <td><?php echo $row['tgl_pengembalian'] ?></td>
+                  <td><?php echo $row['sts'] ?></td>
                   <td>
-                    <a href="form-editbarang.php?id=<?php echo $row['id_barang'] ?>" class="btn btn-success btn-flat" <?php echo $databarang_hidetmbledit; ?> >Edit</a>
+                    <a href="form-editbarang.php?id=<?php echo $row['id_barang'] ?>" class="btn btn-success btn-flat" <?php echo $databarang_hidetmbledit; ?> >Setuju</a>
 
-                    <a class="btn btn-danger btn-flat" onclick="return hapus(<?php echo $row['id_barang'] ?>)" <?php echo $databarang_hidetmbledit; ?> >Delete</a>
+                    <a class="btn btn-danger btn-flat" onclick="return hapus(<?php echo $row['id_barang'] ?>)" <?php echo $databarang_hidetmbledit; ?> >Tolak</a>
                   </td>
                 </tr>
                 <?php

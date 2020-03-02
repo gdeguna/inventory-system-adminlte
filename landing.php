@@ -25,6 +25,7 @@ if(isset($_POST['login'])){
 				$_SESSION['username'] = $username;
 				$_SESSION['levels'] = "Admin";
 				// alihkan ke halaman dashboard admin
+				$log = $user->logLogin($payload);
 				header("location:index.php");
  
 			// cek jika user login sebagai pegawai
@@ -34,6 +35,7 @@ if(isset($_POST['login'])){
 				$_SESSION['username'] = $username;
 				$_SESSION['levels'] = "Karyawan";
 				// alihkan ke halaman dashboard pegawai
+				$log = $user->logLogin($payload);
 				header("location:index.php");
 			 
 			// cek jika user login sebagai pengurus
@@ -43,6 +45,7 @@ if(isset($_POST['login'])){
 				$_SESSION['username'] = $username;
 				$_SESSION['levels'] = "Super Admin";
 				// alihkan ke halaman dashboard pengurus
+				$log = $user->logLogin($payload);
 				header("location:index.php");
 				$hiddendashboardicon = "";
 			 
